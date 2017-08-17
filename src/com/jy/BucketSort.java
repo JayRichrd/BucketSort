@@ -81,7 +81,8 @@ public class BucketSort {
 		System.arraycopy(dataWraps, 0, temp, 0, arrayLength);
 
 		// 根据buckets中的信息，将temp中的元素插入到源数组的中的合适的位置
-		for (int i = 0; i < arrayLength; i++)
+		//必须从temp的最后一个元素往前取出元素来安排位置，因为buckets中的元素是递减的，这样才能保证桶式排序是稳定的
+		for (int i = arrayLength-1; i>=0; i--)
 			// 考虑到序列中可能出现同一个数出现几次的情况，因此需要在取出buckets数组中某个位置的值后，需要递减
 			dataWraps[--buckets[temp[i].data - min]] = temp[i];
 	}
